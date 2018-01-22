@@ -24,7 +24,7 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee -a /etc/apt/
 # Installations:
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y --install-recommends vim chrome-gnome-shell curl arc-theme \
+sudo apt install -y --install-recommends vim git curl arc-theme \
   build-essential r-base r-base-dev libssl-dev python3-dev python3-pip \
   xsel spotify-client winehq-stable rodeo libxml2-dev jq libcupti-dev \
   linux-headers-$(uname -r)
@@ -71,3 +71,4 @@ cd ~
 
 # Reset so the System Works the way you expect it to.
 sudo shutdown -r now
+
