@@ -1,0 +1,12 @@
+# Globally CDable Locations:
+export dotfiles="$HOME/Projects/dotfiles"
+export projects="$HOME/Projects"
+export proj="$HOME/Projects"
+export documents="$HOME/Documents"
+export docs="$HOME/Documents"
+export doc="$HOME/Documents"
+export downloads="$HOME/Downloads"
+export down="$HOME/Downloads"
+export dow="$HOME/Downloads"
+export dls="$HOME/Downloads"
+export dl="$HOME/Downloads"
