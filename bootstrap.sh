@@ -27,7 +27,7 @@ sudo apt upgrade -y
 sudo apt install -y --install-recommends vim git curl build-essential \
   r-base r-base-dev libssl-dev python3-dev python3-pip rodeo xsel atom \
   nodejs libxml2-dev jq libcupti-dev linux-headers-$(uname -r) \
-  spotify-client winehq-stable libcurl4-openssl-dev
+  spotify-client wine-stable libcurl4-openssl-dev tesseract-ocr imagemagick scrot
 
 ## Now, let's get those dotfiles...
 if [ ! -d ~/Projects ]; then
