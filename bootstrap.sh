@@ -37,7 +37,7 @@ fi
 if [ ! -d ~/Projects/dotfiles ]; then
   cd ~/Projects/
   git clone https://github.com/AABoyles/dotfiles.git
-  rm ~/.bash_aliases ~/.bash_profile ~/.bashrc
+  rm ~/.bash_aliases ~/.bash_exports ~/.bash_profile ~/.bashrc
   ln -s ~/Projects/dotfiles/.bash* ~
 fi
 
