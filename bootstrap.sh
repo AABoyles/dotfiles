@@ -27,7 +27,8 @@ sudo apt upgrade -y
 sudo apt install -y --install-recommends vim git curl build-essential \
   r-base r-base-dev libssl-dev python3-dev python3-pip rodeo xsel atom \
   nodejs libxml2-dev jq libcupti-dev linux-headers-$(uname -r) \
-  spotify-client wine-stable libcurl4-openssl-dev tesseract-ocr imagemagick scrot
+  spotify-client wine-stable libcurl4-openssl-dev tesseract-ocr \
+  imagemagick scrot zsh
 
 ## Now, let's get those dotfiles...
 if [ ! -d ~/Projects ]; then
@@ -37,11 +38,18 @@ fi
 if [ ! -d ~/Projects/dotfiles ]; then
   cd ~/Projects/
   git clone https://github.com/AABoyles/dotfiles.git
-  rm ~/.bash_aliases ~/.bash_exports ~/.bash_profile ~/.bashrc
+  rm ~/.bash_aliases ~/.bash_exports ~/.bash_profile ~/.bashrc ~/.zshrc
   ln -s ~/Projects/dotfiles/.bash* ~
+  ln -s ~/Projects/dotfiles/.zsh* ~
 fi
 
 # Non-Apt Installations:
+
+## Oh My zsh
+curl -L http://install.ohmyz.sh | sh
+
+## (And Syntax highlighting thereto)
+cd ~/.oh-my-zsh && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 ## Node Packages
 sudo npm i -g npm yarn http-server
@@ -62,6 +70,9 @@ make -j4
 cd python-package
 sudo python3 setup.py install
 cd ~
+
+# Now, set the default terminal to be zsh
+sudo chsh -s `which zsh`
 
 # Reset so the System Works the way you expect it to.
 sudo shutdown -r now

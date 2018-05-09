@@ -12,16 +12,18 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+if [ "$0" = "bash" ]; then
+  # append to the history file, don't overwrite it
+  shopt -s histappend
+
+  # check the window size after each command and, if necessary,
+  # update the values of LINES and COLUMNS.
+  shopt -s checkwinsize
+fi
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -92,14 +94,15 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+if [ "$0" = "bash" ]; then
+  if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+      . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+      . /etc/bash_completion
+    fi
   fi
 fi
-
 
 # Sensible Bash - An attempt at saner Bash defaults
 # Maintainer: mrzool <http://mrzool.cc>
@@ -107,11 +110,13 @@ fi
 # Version: 0.2.2
 
 # Unique Bash version check
-if ((BASH_VERSINFO[0] < 4))
-then
-  echo "sensible.bash: Looks like you're running an older version of Bash."
-  echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
-  echo "sensible.bash: Keep your software up-to-date!"
+if [ "$0" = "bash" ]; then
+  if ((BASH_VERSINFO[0] < 4))
+  then
+    echo "sensible.bash: Looks like you're running an older version of Bash."
+    echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
+    echo "sensible.bash: Keep your software up-to-date!"
+  fi
 fi
 
 ## GENERAL OPTIONS ##
@@ -121,42 +126,44 @@ fi
 set -o noclobber
 
 # Update window size after every command
-shopt -s checkwinsize
+if [ "$0" = "bash" ]; then
+  shopt -s checkwinsize
+fi
 
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 PROMPT_DIRTRIM=2
 
-# Enable history expansion with space
-# E.g. typing !!<space> will replace the !! with your last command
-bind Space:magic-space
+if [ "$0" = "bash" ]; then
+  # Enable history expansion with space
+  # E.g. typing !!<space> will replace the !! with your last command
+  bind Space:magic-space
 
-# Turn on recursive globbing (enables ** to recurse all directories)
-shopt -s globstar 2> /dev/null
+  # Turn on recursive globbing (enables ** to recurse all directories)
+  shopt -s globstar 2> /dev/null
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+  # Case-insensitive globbing (used in pathname expansion)
+  shopt -s nocaseglob;
 
-## SMARTER TAB-COMPLETION (Readline bindings) ##
+  ## SMARTER TAB-COMPLETION (Readline bindings) ##
+  # Perform file completion in a case insensitive fashion
+  bind "set completion-ignore-case on"
 
-# Perform file completion in a case insensitive fashion
-bind "set completion-ignore-case on"
+  # Treat hyphens and underscores as equivalent
+  bind "set completion-map-case on"
 
-# Treat hyphens and underscores as equivalent
-bind "set completion-map-case on"
+  # Display matches for ambiguous patterns at first tab press
+  bind "set show-all-if-ambiguous on"
 
-# Display matches for ambiguous patterns at first tab press
-bind "set show-all-if-ambiguous on"
+  # Immediately add a trailing slash when autocompleting symlinks to directories
+  bind "set mark-symlinked-directories on"
 
-# Immediately add a trailing slash when autocompleting symlinks to directories
-bind "set mark-symlinked-directories on"
+  ## SANE HISTORY DEFAULTS ##
+  # Append to the history file, don't overwrite it
+  shopt -s histappend
 
-## SANE HISTORY DEFAULTS ##
-
-# Append to the history file, don't overwrite it
-shopt -s histappend
-
-# Save multi-line commands as one command
-shopt -s cmdhist
+  # Save multi-line commands as one command
+  shopt -s cmdhist
+fi
 
 # Record each line as it gets issued
 PROMPT_COMMAND='history -a'
@@ -178,19 +185,22 @@ HISTTIMEFORMAT='%F %T '
 
 # Enable incremental history search with up/down arrows (also Readline goodness)
 # Learn more about this here: http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\e[C": forward-char'
-bind '"\e[D": backward-char'
+if [ "$0" = "bash" ]; then
+  bind '"\e[A": history-search-backward'
+  bind '"\e[B": history-search-forward'
+  bind '"\e[C": forward-char'
+  bind '"\e[D": backward-char'
+fi
 
 ## BETTER DIRECTORY NAVIGATION ##
-
-# Prepend cd to directory names automatically
-shopt -s autocd 2> /dev/null
-# Correct spelling errors during tab-completion
-shopt -s dirspell 2> /dev/null
-# Correct spelling errors in arguments supplied to cd
-shopt -s cdspell 2> /dev/null
+if [ "$0" = "bash" ]; then
+  # Prepend cd to directory names automatically
+  shopt -s autocd 2> /dev/null
+  # Correct spelling errors during tab-completion
+  shopt -s dirspell 2> /dev/null
+  # Correct spelling errors in arguments supplied to cd
+  shopt -s cdspell 2> /dev/null
+fi
 
 # This defines where cd looks for targets
 # Add the directories you want to have fast access to, separated by colon
@@ -199,7 +209,9 @@ CDPATH="."
 
 # This allows you to bookmark your favorite places across the file system
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
-shopt -s cdable_vars
+if [ "$0" = "bash" ]; then
+  shopt -s cdable_vars
+fi
 
 if [ -f ~/.bash_exports ]; then
     . ~/.bash_exports
