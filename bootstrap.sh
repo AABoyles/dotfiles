@@ -2,16 +2,16 @@
 
 # Preinstallations:
 
-## Wine
-sudo dpkg --add-architecture i386
-wget -nc https://dl.winehq.org/wine-builds/Release.key
-sudo apt-key add Release.key
-sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+## Atom
+sudo add-apt-repository ppa:webupd8team/atom
 
 ## R
 gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
 echo "deb https://cran.rstudio.com/bin/linux/ubuntu `lsb_release -cs`/" | sudo tee -a /etc/apt/sources.list
+
+## Node
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 ## Rodeo
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 33D40BC6
@@ -24,10 +24,10 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee -a /etc/apt/
 # Installations:
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y --install-recommends vim git curl arc-theme \
-  build-essential r-base r-base-dev libssl-dev python3-dev python3-pip \
-  xsel spotify-client winehq-stable rodeo libxml2-dev jq libcupti-dev \
-  linux-headers-$(uname -r)
+sudo apt install -y --install-recommends vim git curl build-essential \
+  r-base r-base-dev libssl-dev python3-dev python3-pip rodeo xsel atom \
+  nodejs libxml2-dev jq libcupti-dev linux-headers-$(uname -r) \
+  spotify-client winehq-stable libcurl4-openssl-dev
 
 ## Now, let's get those dotfiles...
 if [ ! -d ~/Projects ]; then
@@ -42,20 +42,14 @@ if [ ! -d ~/Projects/dotfiles ]; then
 fi
 
 # Non-Apt Installations:
-if [ ! -d ~/Packages ]; then
-  mkdir ~/Packages/
-fi
 
-## Node (and packages)
-curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-sudo apt install -y nodejs
+## Node Packages
 sudo npm i -g npm yarn http-server
 
 ## Python Packages
-sudo pip3 install thefuck csvkit numpy pandas sklearn matplotlib plotnine awscli aws-shell spacy
 python3 -m pip install --upgrade pip
-sudo python3 -m pip install jupyter
-sudo pip3 install jupyterlab
+sudo pip3 install thefuck csvkit numpy pandas sklearn matplotlib \
+  plotnine awscli aws-shell spacy howdoi jupyter jupyterlab
 sudo jupyter serverextension enable --py jupyterlab --sys-prefix
 
 ## R Packages
@@ -71,4 +65,3 @@ cd ~
 
 # Reset so the System Works the way you expect it to.
 sudo shutdown -r now
-
