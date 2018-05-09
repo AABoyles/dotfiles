@@ -10,3 +10,6 @@ export down="$HOME/Downloads"
 export dow="$HOME/Downloads"
 export dls="$HOME/Downloads"
 export dl="$HOME/Downloads"
+
+# Add Stuff to PATH
+export PATH=$PATH:$HOME/Projects/dotfiles/scripts
