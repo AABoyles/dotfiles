@@ -201,5 +201,9 @@ CDPATH="."
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
 shopt -s cdable_vars
 
+if [ -f ~/.bash_exports ]; then
+    . ~/.bash_exports
+fi
+
 # TheFuck?
 eval "$(thefuck --alias)"
