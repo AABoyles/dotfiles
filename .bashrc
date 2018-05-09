@@ -201,12 +201,5 @@ CDPATH="."
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
 shopt -s cdable_vars
 
-# Globally CDable Locations:
-export dotfiles="$HOME/Projects/dotfiles"
-export projects="$HOME/Projects"
-export documents="$HOME/Documents"
-export downloads="$HOME/Downloads"
-
 # TheFuck?
 eval "$(thefuck --alias)"
-
