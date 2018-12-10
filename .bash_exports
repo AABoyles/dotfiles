@@ -13,3 +13,5 @@ export dl="$HOME/Downloads"
 
 # Add Stuff to PATH
 export PATH=$PATH:$HOME/Projects/dotfiles/scripts
+export PATH=$PATH:$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin
+
