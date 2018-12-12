@@ -66,12 +66,11 @@ sudo stack upgrade --binary-only
 
 ## Oh My zsh
 # curl -L http://install.ohmyz.sh | sh
-
-## (And Syntax highlighting thereto)
 # cd ~/.oh-my-zsh && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-
-# Now, set the default terminal to be zsh
 # sudo chsh -s `which zsh`
+
+## [Hosts](https://github.com/StevenBlack/hosts)
+curl https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts | sudo tee -a /etc/hosts
 
 # Reset so the System Works the way you expect it to.
 sudo shutdown -r now
