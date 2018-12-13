@@ -25,3 +25,5 @@ alias pbpaste='xsel --clipboard --output'
 
 # Refresh changes to the dotfiles.
 alias refresh='source ~/.bashrc'
+
+alias git='hub'

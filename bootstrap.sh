@@ -72,5 +72,9 @@ sudo stack upgrade --binary-only
 ## [Hosts](https://github.com/StevenBlack/hosts)
 curl https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts | sudo tee -a /etc/hosts
 
+## hub
+sudo snap install hub --classic
+curl https://raw.githubusercontent.com/github/hub/master/etc/hub.bash_completion.sh > ~/Projects/dotfiles/ignored/hub.bash_completion.sh
+
 # Reset so the System Works the way you expect it to.
 sudo shutdown -r now
