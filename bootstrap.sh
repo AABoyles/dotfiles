@@ -5,10 +5,9 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y --install-recommends \
   linux-headers-$(uname -r) software-properties-common \
   build-essential curl libssl-dev vim git \
-  xsel libxml2-dev jq \
-  wine-stable libcurl4-openssl-dev \
-  tesseract-ocr imagemagick scrot zsh conky-all lm-sensors \
-  thefuck
+  xsel libxml2-dev wine-stable libcurl4-openssl-dev \
+  tesseract-ocr imagemagick scrot conky-all lm-sensors \
+  thefuck python-pip nodejs
 
 ## Now, let's get those dotfiles...
 if [ ! -d ~/Projects ]; then
@@ -18,28 +17,25 @@ fi
 if [ ! -d ~/Projects/dotfiles ]; then
   cd ~/Projects/
   git clone https://github.com/AABoyles/dotfiles.git
-  # rm ~/.bash_aliases ~/.bash_exports ~/.bash_profile ~/.bashrc ~/.zshrc
-  ln -s ~/Projects/dotfiles/.* ~
-  # ln -s ~/Projects/dotfiles/.zsh* ~
+  rm ~/.bash_aliases ~/.bash_exports ~/.bash_profile ~/.bashrc
+  ln -s ~/Projects/dotfiles/.bash* ~
 fi
 
 ## Python Packages
 python3 -m pip install --upgrade pip
-sudo pip3 install numpy pandas sklearn matplotlib \
+sudo pip install numpy pandas sklearn matplotlib \
   plotnine awscli spacy jupyter
 
 ## R
-gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9
-gpg -a --export E084DAB9 | sudo apt-key add -
-echo "deb https://cran.rstudio.com/bin/linux/ubuntu `lsb_release -cs`/" | sudo tee -a /etc/apt/sources.list
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+gpg -a --export E298A3A825C0D65DFD57CBB651716619E084DAB9 | sudo apt-key add -
+echo "deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -cs`-cran35/" | sudo tee -a /etc/apt/sources.list
 sudo apt install -y --install-recommends r-base r-base-dev
 
 ### R Packages
 sudo /usr/bin/Rscript -e "install.packages('tidyverse')"
 
-## Node
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get install -y nodejs
+## Node Version Manager
 mkdir ~/.nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
