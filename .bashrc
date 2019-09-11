@@ -227,3 +227,8 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f ~/Projects/dotfiles/ignored/hub.bash_completion.sh ]; then
   . ~/Projects/dotfiles/ignored/hub.bash_completion.sh
 fi
+
+# pyenv
+export PATH="/home/nsp3/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

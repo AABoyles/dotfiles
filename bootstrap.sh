@@ -21,6 +21,9 @@ if [ ! -d ~/Projects/dotfiles ]; then
   ln -s ~/Projects/dotfiles/.bash* ~
 fi
 
+# pyenv
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
 ## Python Packages
 python3 -m pip install --upgrade pip
 sudo pip install numpy pandas sklearn matplotlib \
