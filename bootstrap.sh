@@ -7,7 +7,7 @@ sudo apt install -y --install-recommends \
   build-essential curl libssl-dev vim git \
   xsel libxml2-dev wine-stable libcurl4-openssl-dev \
   tesseract-ocr imagemagick scrot conky-all lm-sensors \
-  thefuck python-pip nodejs
+  thefuck python3-pip nodejs
 
 ## Now, let's get those dotfiles...
 if [ ! -d ~/Projects ]; then
@@ -26,7 +26,7 @@ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer 
 
 ## Python Packages
 python3 -m pip install --upgrade pip
-sudo pip install numpy pandas sklearn matplotlib \
+sudo pip3 install numpy pandas sklearn matplotlib \
   plotnine awscli spacy jupyter
 
 ## R
