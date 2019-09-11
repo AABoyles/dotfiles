@@ -33,7 +33,7 @@ echo "deb https://cloud.r-project.org/bin/linux/ubuntu `lsb_release -cs`-cran35/
 sudo apt install -y --install-recommends r-base r-base-dev
 
 ### R Packages
-sudo /usr/bin/Rscript -e "install.packages('tidyverse')"
+/usr/bin/Rscript -e "install.packages('tidyverse')"
 
 ## Node Version Manager
 mkdir ~/.nvm
