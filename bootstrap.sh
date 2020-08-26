@@ -26,7 +26,7 @@ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer 
 
 ## Python Packages
 python3 -m pip install --upgrade pip
-sudo pip3 install numpy pandas sklearn matplotlib \
+sudo pip3 install numpy pandas scikit-learn matplotlib \
   plotnine awscli spacy jupyter
 
 ## R
