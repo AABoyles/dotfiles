@@ -33,15 +33,21 @@ fi
 
 
 # Refresh changes to the dotfiles.
-alias refresh='source ~/.bashrc'
+if `ps -p "$$" -o command=""` = '-zshrc'
+then
+    alias refresh='source ~/.zshrc'
+fi
+if `ps -p "$$" -o command=""` = '-bashrc'
+then
+    alias refresh='source ~/.bashrc'
+fi
 
-
-if ! command -v hub &> /dev/null
+if command -v hub &> /dev/null
 then
      alias git='hub'
 fi
 
-if ! command -v nvim &> /dev/null
+if command -v nvim &> /dev/null
 then
     alias vim='nvim'
 fi
