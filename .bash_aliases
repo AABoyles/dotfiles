@@ -1,4 +1,9 @@
-# some more ls aliases
+alias please='sudo'
+alias plz='sudo'
+alias pleasedo='sudo'
+alias pleasudo='sudo'
+
+# some ls aliases
 
 if command -v lsd &> /dev/null
 then
