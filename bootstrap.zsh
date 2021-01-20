@@ -28,25 +28,20 @@ sudo pip3 install numpy pandas scikit-learn matplotlib \
   plotnine awscli spacy jupyter
 
 ## R
-# TODO: Install R
+brew install r
 
 ### R Packages
-# TODO: Install R
-#/usr/bin/Rscript -e "install.packages(c('tidyverse', 'plotly', 'shiny'))"
+/usr/local/bin/Rscript -e "install.packages(c('tidyverse', 'plotly', 'shiny'), repos='https://cran.rstudio.com/')"
 
 ## Node Version Manager
-# TODO: Not working
 mkdir ~/.nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 ### Node Packages
 npm i -g http-server
 
-### [Atom](https://atom.io/)
-cd ~/Downloads/
-
 ## [Hosts](https://github.com/StevenBlack/hosts)
 curl https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling/hosts | sudo tee -a /etc/hosts
 
-# Reset so the System Works the way you expect it to.
+# Restart so the system works the way you expect it to.
 sudo shutdown -r now
